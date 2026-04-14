@@ -1,9 +1,18 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 
 class FCMService {
   final FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   Future<void> initialize({required void Function(RemoteMessage) onData}) async {
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    final token = await FirebaseMessaging.instance.getToken();
+    debugPrint('FCM token: $token');
     await messaging.requestPermission(alert: true, badge: true, sound: true);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
