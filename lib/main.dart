@@ -48,7 +48,8 @@ class _HomePageState extends State<HomePage> {
     _fcmService.initialize(
       onData: (message) {
         setState(() {
-          statusText = message.notification?.title ?? 'Payload received';
+          statusText =
+              '${message.notification?.title ?? ''}\n${message.notification?.body ?? ''}';
           imagePath = 'assets/images/${message.data['asset'] ?? 'default'}.jpg';
         });
       },
