@@ -66,7 +66,24 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(statusText, style: TextStyle(fontSize: 18))],
+          children: [
+            AnimatedSwitcher(
+              duration: Duration(milliseconds: 500),
+              child: Image.asset(
+                imagePath,
+                key: ValueKey(imagePath),
+                width: 200,
+              ),
+            ),
+
+            SizedBox(height: 20),
+
+            Text(
+              statusText,
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
